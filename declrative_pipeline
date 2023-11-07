@@ -19,5 +19,10 @@ agent any
      archiveArtifacts artifacts: 'output/*.txt', excludes: 'output/*.md'
      }
    }
+  stage('intractive stage'){
+    steps{
+      input 'test message' 
+    }
+  }
   }
 }
