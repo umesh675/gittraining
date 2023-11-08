@@ -1,0 +1,50 @@
+pipeline{
+	
+	agent any
+
+	parameters{
+		
+		choice(name: 'CHOICE', choices: ['one','two','three'], description: 'pick your choice'
+
+	}
+
+	stages{
+	
+		stage('first'){
+			
+			when{
+			
+				expression{
+			
+					return params.CHOICE == one
+				}
+			}
+			steps{
+			
+				echo "your choice is ${params.CHOICE}"
+			}
+		}
+
+		stage('other'){
+		
+			when{
+				expression{
+				
+					return params.CHOICE == two || params.CHOICE == three
+				}
+			}
+
+			steps{
+				echo "your choice is ${params.CHOICE}"
+			}
+		}
+
+		post{
+			always{
+				
+				echo "your choice is ${params.CHOICE}'
+			}
+		}
+	
+	}	
+}
